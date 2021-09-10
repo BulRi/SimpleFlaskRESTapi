@@ -17,3 +17,20 @@ class UserRegister(Resource):
         user.save_to_db()
 
         return {'message': 'usuario creado'}, 201  # 201 es paa creado
+
+
+class User(Resource):
+    @classmethod
+    def get(cls, user_id):
+        user = UserModel.find_by_id(user_id)
+        if not user:
+            return{'message': 'Usuario no encontrado'}, 404
+        return user.json()
+
+    @classmethod
+    def delete(cls,user_id):
+        user = UserModel.find_by_id(user_id)
+        if not user:
+            return{'Message': 'Usuario no encontrado'}, 404
+        user.delete_from_db()
+        return {'message': 'usuario con id: {} eliminado'.format(user_id)}
