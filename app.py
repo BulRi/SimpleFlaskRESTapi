@@ -23,25 +23,6 @@ def create_tables():
 #app.config['JWT_AUTH_URL_RULE'] = '/login'
 jwt = JWT(app, authenticate, identity)
 
-# configuración de JWT para expirar en 30 min
-#app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=1800)
-
-# configuración de JWT para que la clave de autorización sea 'email' en lugar de la default 'username'
-#app.config['JWT_AUTH_USERNAME_KEY'] = 'email'
-
-# personalizar JWT auth response, inclur el id usuario en el cuerpo de la respuesta
-#@jwt.auth_response_handler
-#def customized_response_handler(access_token, identity):
-#    return jsonify({
-#                        'access_token': access_token.decode('utf-8'),
-#                        'user_id': identity.id
-#                   })
-
-#def customized_error_handler(error):
-#    return jsonify({
-#                       'message': error.description,
-#                       'code': error.status_code
-#                   }), error.status_code
 
 api.add_resource(Store, '/store/<string:name>')
 api.add_resource(StoreList, '/stores')
